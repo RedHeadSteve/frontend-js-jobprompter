@@ -71,4 +71,36 @@ const departments = {
     }
 }
 
-console.log(departments);
+function loopJobs(){
+    let jobLoop = '';
+    for(let i=0;i<=4;i++){
+        jobLoop += + i +": " + departments[userInput].jobs[i].title + ",\n";
+        if ((departments[userInput].jobs[i].title) === "Business Development Manager" || (departments[userInput].jobs[i].title === "Customer Experience Manager")) {
+            break;
+        }
+    }
+    return jobLoop;
+}
+
+const userInput = prompt('Over welke afdeling wil je meer informatie? Kies uit: [marketing / sales / customer-service]');
+
+if ((userInput === "marketing") || (userInput === "sales") || (userInput === "customer-service")) {
+    document.getElementById('department-description').textContent = "Je koos " + userInput + " " + departments[userInput].description;
+} else {
+    document.getElementById("error-message").textContent = "Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.";
+}
+
+const userSelector = prompt("Je koos " + userInput +". Over welke functie wil je meer weten? Voer een getal tussen 0 en 3 in.\n" +
+    loopJobs());
+
+if (userSelector < departments[userInput].jobs.length) {
+    document.getElementById('role-description').textContent = "Je koos " + departments[userInput].jobs[userSelector].title + " Een uitdagende rol! " + departments[userInput].jobs[userSelector].description;
+} else {
+    document.getElementById("error-message").textContent = "Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.";
+}
+// console.log(("De afdeling Sales heeft ") + departments.marketing.numberOfEmployees + ("medewerkers"));
+// console.log((" Marketing is een leuke afdeling om te werken.") + departments.marketing.description);
+// console.log(("De afdeling Customer Service heeft") + departments["customer-service"].numberOfEmployees + ("medewerkers"));
+// console.log(("Sales is een uitdagende afdeling om te werken als Verkoopmanager.") + departments.sales.jobs[1].description);
+
+
